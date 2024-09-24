@@ -1,61 +1,72 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-regex-commit"]
 build-backend = "hatchling.build"
 
 [project]
 name = "nextline-test-utils"
 dynamic = ["version"]
-description = ''
+description = 'A collection of utilities for testing Nextline packages'
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 license = "MIT"
 keywords = []
 authors = [
-  { name = "Tai Sakuma", email = "tai.sakuma@gmail.com" },
+  { name = "Simons Observatory", email = "so_software@simonsobservatory.org" },
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
-  "Programming Language :: Python :: Implementation :: CPython",
-  "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+dependencies = ["hypothesis>=6.88"]
+
+[project.optional-dependencies]
+tests = [
+  "pytest-asyncio>=0.18",
+  "pytest-cov>=3.0",
+  "pytest-timeout>=2.1",
+  "pytest>=7.0",
+]
 
 [project.urls]
-Documentation = "https://github.com/Tai Sakuma/nextline-test-utils#readme"
-Issues = "https://github.com/Tai Sakuma/nextline-test-utils/issues"
-Source = "https://github.com/Tai Sakuma/nextline-test-utils"
+Documentation = "https://github.com/simonsobs/nextline-test-utils#readme"
+Issues = "https://github.com/simonsobs/nextline-test-utils/issues"
+Source = "https://github.com/simonsobs/nextline-test-utils"
 
 [tool.hatch.version]
+source = "regex_commit"
 path = "src/nextline_test_utils/__about__.py"
+tag_sign = false
 
-[tool.hatch.envs.types]
-extra-dependencies = [
-  "mypy>=1.0.0",
-]
-[tool.hatch.envs.types.scripts]
-check = "mypy --install-types --non-interactive {args:src/nextline_test_utils tests}"
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+timeout = 60
+addopts = "--doctest-modules --durations=10"
+# doctest_optionflags = ["ELLIPSIS", "NORMALIZE_WHITESPACE",]
+doctest_optionflags = ["ELLIPSIS"]
+norecursedirs = "build"
+filterwarnings = ["ignore::hypothesis.errors.NonInteractiveExampleWarning"]
+log_cli = false
+log_cli_level = "INFO"
+
+[tool.black]
+skip-string-normalization = true
 
 [tool.coverage.run]
 source_pkgs = ["nextline_test_utils", "tests"]
 branch = true
 parallel = true
-omit = [
-  "src/nextline_test_utils/__about__.py",
-]
 
 [tool.coverage.paths]
-nextline_test_utils = ["src/nextline_test_utils", "*/nextline-test-utils/src/nextline_test_utils"]
+nextline_test_utils = [
+  "src/nextline_test_utils",
+  "*/nextline-test-utils/src/nextline_test_utils",
+]
 tests = ["tests", "*/nextline-test-utils/tests"]
 
 [tool.coverage.report]
-exclude_lines = [
-  "no cov",
-  "if __name__ == .__main__.:",
-  "if TYPE_CHECKING:",
-]
+exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]

@@ -1,3 +1,9 @@
-# SPDX-FileCopyrightText: 2024-present Tai Sakuma <tai.sakuma@gmail.com>
-#
-# SPDX-License-Identifier: MIT
+__all__ = [
+    '__version__',
+    'safe_compare',
+    'safe_max',
+    'safe_min',
+]
+
+from .__about__ import __version__
+from .safe import safe_compare, safe_max, safe_min

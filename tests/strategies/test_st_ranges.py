@@ -1,5 +1,5 @@
 import sys
-from typing import Any, Optional, TypeVar, overload
+from typing import Optional, TypeVar
 
 from hypothesis import given, settings
 from hypothesis import strategies as st

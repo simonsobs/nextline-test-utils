@@ -7,7 +7,7 @@ from nextline_test_utils.strategies import st_datetimes, st_ranges
 
 @given(st.data())
 def test_st_datetimes(data: st.DataObject) -> None:
-    min_, max_ = data.draw(st_ranges(st_=st_datetimes))
+    min_, max_ = data.draw(st_ranges(st_datetimes))
     dt_ = data.draw(st_datetimes(min_value=min_, max_value=max_))
     assert dt_.tzinfo is None
     assert dt_.fold == 0

@@ -1,5 +1,5 @@
 import sys
-from typing import Optional, TypeVar
+from typing import Any, Optional, TypeVar, overload
 
 from hypothesis import given, settings
 from hypothesis import strategies as st
@@ -50,7 +50,7 @@ def st_min_max_end(
 
 
 class StRangesKwargs(TypedDict, Generic[T], total=False):
-    st_: StMinMaxValuesFactory[T]
+    # st_: StMinMaxValuesFactory[T]
     min_start: Optional[T]
     max_start: Optional[T]
     min_end: Optional[T]
@@ -65,7 +65,7 @@ class StRangesKwargs(TypedDict, Generic[T], total=False):
 def st_st_ranges_kwargs(
     draw: st.DrawFn, st_: StMinMaxValuesFactory[T]
 ) -> StRangesKwargs[T]:
-    kwargs = StRangesKwargs(st_=st_)
+    kwargs = StRangesKwargs[T]()
 
     min_start, max_start = draw(st_min_max_start(st_=st_))  # type: ignore
     if min_start is not None:
@@ -111,7 +111,7 @@ def test_st_ranges(data: st.DataObject) -> None:
     st_ = data.draw(st.sampled_from([st_graphql_ints, st_datetimes]))
     kwargs = data.draw(st_st_ranges_kwargs(st_=st_))  # type: ignore
 
-    start, end = data.draw(st_ranges(**kwargs))
+    start, end = data.draw(st_ranges(st_, **kwargs))  # type: ignore
 
     allow_start_none = kwargs.get('allow_start_none', True)
     if not allow_start_none:

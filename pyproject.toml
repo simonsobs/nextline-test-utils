@@ -24,7 +24,7 @@ classifiers = [
 ]
 dependencies = [
   "hypothesis>=6.88",
-  "black>=23.10",
+  "black>=24.3",
   "graphql-core>=3.2",
   "typing-extensions>=4.8",
 ]

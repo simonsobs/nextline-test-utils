@@ -68,7 +68,7 @@ def st_graphql_ints(
 
 
 def st_ranges(
-    st_: StMinMaxValuesFactory[T],
+    st_: StMinMaxValuesFactory[T] = st.integers,  # type: ignore
     /,
     min_start: Optional[T] = None,
     max_start: Optional[T] = None,

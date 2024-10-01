@@ -63,8 +63,9 @@ class StRangesKwargs(TypedDict, Generic[T], total=False):
 
 @st.composite
 def st_st_ranges_kwargs(
-    draw: st.DrawFn, st_: StMinMaxValuesFactory[T]
+    draw: st.DrawFn, st_: StMinMaxValuesFactory[T] | None = None
 ) -> StRangesKwargs[T]:
+    st_ = st_ or st.integers  # type: ignore
     kwargs = StRangesKwargs[T]()
 
     min_start, max_start = draw(st_min_max_start(st_=st_))  # type: ignore
@@ -93,7 +94,7 @@ def st_st_ranges_kwargs(
 
 @given(st.data())
 def test_st_st_ranges_kwargs(data: st.DataObject) -> None:
-    st_ = data.draw(st.sampled_from([st_graphql_ints, st_datetimes]))
+    st_ = data.draw(st.sampled_from([None, st_graphql_ints, st_datetimes]))
     kwargs = data.draw(st_st_ranges_kwargs(st_=st_))  # type: ignore
 
     min_start = kwargs.get('min_start')
@@ -108,10 +109,12 @@ def test_st_st_ranges_kwargs(data: st.DataObject) -> None:
 @given(st.data())
 @settings(max_examples=1000)
 def test_st_ranges(data: st.DataObject) -> None:
-    st_ = data.draw(st.sampled_from([st_graphql_ints, st_datetimes]))
+    st_ = data.draw(st.sampled_from([None, st_graphql_ints, st_datetimes]))
     kwargs = data.draw(st_st_ranges_kwargs(st_=st_))  # type: ignore
+    
+    args = (st_,) if st_ is not None else ()
 
-    start, end = data.draw(st_ranges(st_, **kwargs))  # type: ignore
+    start, end = data.draw(st_ranges(*args, **kwargs))  # type: ignore
 
     allow_start_none = kwargs.get('allow_start_none', True)
     if not allow_start_none:

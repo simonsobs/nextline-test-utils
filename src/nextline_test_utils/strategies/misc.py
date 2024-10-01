@@ -13,7 +13,7 @@ T = TypeVar('T')
 
 class StMinMaxValuesFactory(Protocol[T]):  # pragma: no cover
     def __call__(
-        self, *, min_value: Optional[T] = None, max_value: Optional[T] = None
+        self, min_value: Optional[T] = None, max_value: Optional[T] = None
     ) -> st.SearchStrategy[T]: ...
 
 
@@ -68,7 +68,9 @@ def st_graphql_ints(
 
 
 def st_ranges(
-    st_: StMinMaxValuesFactory[T],
+    st_: StMinMaxValuesFactory[T] = st.integers,  # type: ignore
+    /,
+    *,
     min_start: Optional[T] = None,
     max_start: Optional[T] = None,
     min_end: Optional[T] = None,

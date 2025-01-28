@@ -3,7 +3,7 @@
 # latest versions of the dependencies. This file is monitored by Dependabot.
 hypothesis==6.124.7
 black==24.10.0
-graphql-core==3.2.5
+graphql-core==3.2.6
 typing-extensions==4.12.2
 pytest-asyncio==0.25.2
 pytest-cov==6.0.0

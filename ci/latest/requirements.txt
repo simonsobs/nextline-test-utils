@@ -2,7 +2,7 @@
 # is used in a GitHub Actions workflow to test the compatibility with the
 # latest versions of the dependencies. This file is monitored by Dependabot.
 hypothesis==6.124.7
-black==24.10.0
+black==25.1.0
 graphql-core==3.2.6
 typing-extensions==4.12.2
 pytest-asyncio==0.25.3

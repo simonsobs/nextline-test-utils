@@ -1,7 +1,7 @@
 # The exact requirements of the latest versions of the dependencies. This file
 # is used in a GitHub Actions workflow to test the compatibility with the
 # latest versions of the dependencies. This file is monitored by Dependabot.
-hypothesis==6.125.3
+hypothesis==6.128.2
 black==25.1.0
 graphql-core==3.2.6
 typing-extensions==4.12.2

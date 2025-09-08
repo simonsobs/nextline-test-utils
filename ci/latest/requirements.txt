@@ -4,7 +4,7 @@
 hypothesis==6.137.2
 black==25.1.0
 graphql-core==3.2.6
-typing-extensions==4.14.1
+typing-extensions==4.15.0
 pytest-asyncio==1.1.0
 pytest-cov==6.2.1
 pytest-timeout==2.4.0

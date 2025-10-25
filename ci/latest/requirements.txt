@@ -1,11 +1,11 @@
 # The exact requirements of the latest versions of the dependencies. This file
 # is used in a GitHub Actions workflow to test the compatibility with the
 # latest versions of the dependencies. This file is monitored by Dependabot.
-hypothesis==6.138.15
-black==25.1.0
+hypothesis==6.142.3
+black==25.9.0
 graphql-core==3.2.6
 typing-extensions==4.15.0
 pytest-asyncio==1.2.0
-pytest-cov==6.3.0
+pytest-cov==7.0.0
 pytest-timeout==2.4.0
 pytest==8.4.2

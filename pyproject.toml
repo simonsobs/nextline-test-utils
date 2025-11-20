@@ -9,8 +9,8 @@ description = 'A collection of utilities for testing Nextline packages'
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
-keywords = []
-authors = [{ name = "Tai Sakuma", email = "tai.sakuma@gmail.com" }]
+license-files = ["LICENSE.txt"]
+authors = [{ name = "Tai Sakuma" }]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
@@ -22,6 +22,7 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
 ]
+keywords = ["nextline", "testing"]
 dependencies = [
   "hypothesis>=6.117",
   "black>=24.3",
@@ -38,13 +39,14 @@ tests = [
 ]
 
 [project.urls]
-Documentation = "https://github.com/simonsobs/nextline-test-utils#readme"
-Issues = "https://github.com/simonsobs/nextline-test-utils/issues"
-Source = "https://github.com/simonsobs/nextline-test-utils"
+Documentation = "https://github.com/nextline-dev/nextline-test-utils#readme"
+Issues = "https://github.com/nextline-dev/nextline-test-utils/issues"
+Source = "https://github.com/nextline-dev/nextline-test-utils"
 
 [tool.hatch.version]
 source = "regex_commit"
 path = "src/nextline_test_utils/__about__.py"
+check_dirty = false
 tag_sign = false
 
 [tool.pytest.ini_options]

@@ -1,0 +1,11 @@
+# Pinned latest versions of dependencies.
+# Used in GitHub Actions for testing compatibility.
+# Monitored by Dependabot.
+hypothesis==6.147.0
+black==25.9.0
+graphql-core==3.2.7
+typing-extensions==4.15.0
+pytest-asyncio==1.3.0
+pytest-cov==7.0.0
+pytest-timeout==2.4.0
+pytest==8.4.2

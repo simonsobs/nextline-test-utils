@@ -1,7 +1,7 @@
 # Pinned latest versions of dependencies.
 # Used in GitHub Actions for testing compatibility.
 # Monitored by Dependabot.
-hypothesis==6.147.0
+hypothesis==6.148.2
 black==25.11.0
 graphql-core==3.2.7
 typing-extensions==4.15.0

@@ -30,13 +30,14 @@ dependencies = [
   "typing-extensions>=4.8",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 tests = [
   "pytest-asyncio>=0.18",
   "pytest-cov>=3.0",
   "pytest-timeout>=2.1",
   "pytest>=8.0",
 ]
+type-check = ["mypy>=1.0"]
 
 [project.urls]
 Documentation = "https://github.com/nextline-dev/nextline-test-utils#readme"
